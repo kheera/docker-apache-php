@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  web:
+    container_name: apache-container
+    image: apache-image
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./htdocs:/var/www/html/
+      - ./docker/certs/ssl-cert-snakeoil.crt:/etc/ssl/certs/ssl-cert-snakeoil.crt
+      - ./docker/certs/ssl-cert-snakeoil.key:/etc/ssl/private/ssl-cert-snakeoil.key
+    ports:
+      - "80:80"
+      - "443:443"
